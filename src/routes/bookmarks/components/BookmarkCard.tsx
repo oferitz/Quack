@@ -1,9 +1,9 @@
-import { component$, useSignal } from '@builder.io/qwik'
+import { component$ } from '@builder.io/qwik'
 import { Link, server$, useLocation, useNavigate } from '@builder.io/qwik-city'
 import { Image } from '@unpic/qwik'
-import { bookmarkTable, SelectBookmark } from '~/db/schema/bookmark'
+import { bookmarkTable, type SelectBookmark } from '~/db/schema/bookmark'
 import { LuTrash } from '@qwikest/icons/lucide'
-import { SelectFolder } from '~/db/schema/folder'
+import type { SelectFolder } from '~/db/schema/folder'
 import { db } from '~/db'
 import { eq } from 'drizzle-orm'
 

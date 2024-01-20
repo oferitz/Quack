@@ -1,5 +1,5 @@
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
-import { InferSelectModel, sql } from 'drizzle-orm'
+import { type InferSelectModel, sql } from 'drizzle-orm'
 import { createInsertSchema } from 'drizzle-zod'
 
 export const bookmarkTable = sqliteTable('bookmarks', {

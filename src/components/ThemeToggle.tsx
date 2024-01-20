@@ -1,9 +1,7 @@
 import {
   $,
   component$,
-  useOnWindow,
-  useSignal,
-  useVisibleTask$
+  useOnWindow
 } from '@builder.io/qwik'
 
 const themeStorageKey = 'quack-theme'

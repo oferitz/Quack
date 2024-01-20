@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik'
 import BookmarkCard from '~/routes/bookmarks/components/BookmarkCard'
-import { SelectBookmark } from '~/db/schema/bookmark'
-import { SelectFolder } from '~/db/schema/folder'
+import type { SelectBookmark } from '~/db/schema/bookmark'
+import type { SelectFolder } from '~/db/schema/folder'
 import BookmarkListHeader from '~/routes/bookmarks/components/BookmarkListHeader'
 
 interface BookmarkListProps {

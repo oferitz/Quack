@@ -1,6 +1,6 @@
 import { component$, useSignal } from '@builder.io/qwik'
 import { server$, useNavigate } from '@builder.io/qwik-city'
-import { SelectFolder } from '~/db/schema/folder'
+import type { SelectFolder } from '~/db/schema/folder'
 import BookmarkFolders from '~/routes/bookmarks/components/folders/BookmarkFolders'
 import { cn } from '~/helpers/style.utils'
 import { useAuthSession } from '~/routes/plugin@auth'
@@ -33,8 +33,8 @@ export const addBookmark = server$(
         description: metadata.description || '',
         folderId: folderId || null,
         image:
-          metadata?.open_graph?.images?.[0]?.url ||
-          metadata?.twitter_card?.images?.[0]?.url ||
+          metadata.open_graph.images?.[0]?.url ||
+          metadata.twitter_card.images[0]?.url ||
           '/favicon.svg'
       }
       await db.insert(bookmarkTable).values(insertItem)
@@ -54,7 +54,7 @@ interface BookmarkListHeaderProps {
 export default component$<BookmarkListHeaderProps>(({ folders }) => {
   const nav = useNavigate()
   const session = useAuthSession()
-  const userId = session?.value?.user?.email ?? '0'
+  const userId = session.value?.user?.email ?? '0'
   const open = useSignal(false)
   const url = useSignal('')
   return (
@@ -90,7 +90,7 @@ export default component$<BookmarkListHeaderProps>(({ folders }) => {
             <button
               class="btn btn-sm btn-primary"
               onClick$={async () => {
-                const response = await addBookmark({ url: url.value, userId })
+                await addBookmark({ url: url.value, userId })
                 open.value = false
                 url.value = ''
                 await nav('/bookmarks/?folder=all', {

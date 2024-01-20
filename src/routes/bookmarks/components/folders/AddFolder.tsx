@@ -33,7 +33,7 @@ export const addFolder = server$(async (folderName: string, userId: string) => {
 export default component$(() => {
   const nav = useNavigate()
   const session = useAuthSession()
-  const userId = session?.value?.user?.email ?? '0'
+  const userId = session.value?.user?.email ?? '0'
   const folderName = useSignal('')
 
   return (

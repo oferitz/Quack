@@ -21,7 +21,7 @@ export default component$(() => {
                   <img
                     width="32"
                     height="32"
-                    src={session.value.user?.image ?? ''}
+                    src={session.value.user.image ?? ''}
                     alt={session.value.user.name ?? ''}
                   />
                 </div>

@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik'
-import { folderTable, SelectFolder } from '~/db/schema/folder'
+import { folderTable, type SelectFolder } from '~/db/schema/folder'
 import { cn } from '~/helpers/style.utils'
 import AddFolder from '~/routes/bookmarks/components/folders/AddFolder'
 import { LuFolder, LuX } from '@qwikest/icons/lucide'
@@ -68,7 +68,7 @@ export default component$<BookmarkFoldersProps>(({ folders }) => {
             {isSelected && (
               <span
                 onClick$={async () => {
-                  const response = await deleteFolder(folder.id)
+                  await deleteFolder(folder.id)
                   await nav('/bookmarks/?folder=all', { forceReload: true })
                 }}
               >
