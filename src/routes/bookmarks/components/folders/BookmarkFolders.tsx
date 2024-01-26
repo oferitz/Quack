@@ -44,38 +44,37 @@ export default component$<BookmarkFoldersProps>(({ folders }) => {
             selectedFolder === 'all' ? 'btn-primary' : 'bg-base-100'
           )}
         >
-          <LuFolder class="mr-2 h-4 w-4" /> All
+          <LuFolder class="h-4 w-4" /> All
         </button>
       </Link>
 
       {folders.map((folder) => {
         const isSelected = selectedFolder === folder.id
         return (
-          <button
-            key={folder.id}
-            class={cn(
-              'btn btn-sm flex items-center h-8 mb-2 mr-2',
-              isSelected ? 'btn-primary' : 'bg-base-100'
-            )}
-          >
+          <div class="relative">
             <Link
               href={`/bookmarks?folder=${folder.id}`}
-              class="flex items-center"
+              key={folder.id}
+              class={cn(
+                'btn btn-sm flex items-center h-8 mb-2 mr-2',
+                isSelected ? 'btn-primary' : 'bg-base-100'
+              )}
             >
-              <LuFolder class="mr-2 h-4 w-4" />
+              <LuFolder class="h-4 w-4" />
               <span>{folder.name}</span>
             </Link>
             {isSelected && (
               <span
+                class="absolute top-0 right-0 -mt-2 ml-2 p-[2px] rounded-full bg-base-100 hover:bg-base-300 cursor-pointer"
                 onClick$={async () => {
                   await deleteFolder(folder.id)
                   await nav('/bookmarks/?folder=all', { forceReload: true })
                 }}
               >
-                <LuX class="ml-2 h-4 w-4" />
+                <LuX class="h-3 w-3" />
               </span>
             )}
-          </button>
+          </div>
         )
       })}
       <AddFolder />
